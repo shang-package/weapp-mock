@@ -1,0 +1,24 @@
+{
+  "name": "@s4p/weapp-mock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "wm": "./bin/wm"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.14.23",
+    "esbuild-register": "^3.3.2",
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.3",
+    "umi-core": "^1.9.9",
+    "umi-mock": "^2.1.4",
+    "umi-serve": "^1.9.10",
+    "umi-utils": "^1.7.2"
+  }
+}
