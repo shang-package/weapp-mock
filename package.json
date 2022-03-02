@@ -7,14 +7,17 @@
     "wm": "./bin/wm"
   },
   "scripts": {
+    "link": "npm link --force",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^5.0.0",
     "esbuild": "^0.14.23",
     "esbuild-register": "^3.3.2",
     "express": "^4.17.3",
+    "fs-extra": "^10.0.1",
     "http-proxy-middleware": "^2.0.3",
     "umi-core": "^1.9.9",
     "umi-mock": "^2.1.4",
