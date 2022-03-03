@@ -25,14 +25,16 @@ const createOriginMiddleware = require("./src/origin-middleware");
 
 const { app, listen } = require("./src/app");
 
-console.log(chalk.blue(`正在生成 mock 数据中...`));
-const dir = mockDataGenerate(projectDir);
-console.log(chalk.blue(`mock 数据路径: ${dir}`));
+(async () => {
+  console.log(chalk.blue(`正在生成 mock 数据中...`));
+  const dir = await mockDataGenerate(projectDir);
+  console.log(chalk.blue(`mock 数据路径: ${dir}`));
 
-const mw = createMockMiddleware(dir);
-const mw2 = createOriginMiddleware(v.originBaseUrl);
-app.use(...mw);
-app.use(...mw2);
-const u = listen(port);
-console.log("\n\n\n");
-console.log(chalk.blue(u));
+  const mw = createMockMiddleware(dir);
+  const mw2 = createOriginMiddleware(v.originBaseUrl);
+  app.use(...mw);
+  app.use(...mw2);
+  const u = listen(port);
+  console.log("\n\n\n");
+  console.log(chalk.blue(u));
+})();

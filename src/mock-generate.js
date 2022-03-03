@@ -1,23 +1,21 @@
 const os = require("os");
-const { writeFileSync, ensureDirSync } = require("fs-extra");
+const { ensureDirSync, emptyDirSync } = require("fs-extra");
 const { resolve } = require("path");
-const { execSync } = require("child_process");
 
-function generate(projectDir) {
+const { generate: g } = require("@s4p/o2t");
+
+async function generate(projectDir) {
   const dir = resolve(os.tmpdir(), encodeURIComponent(projectDir));
   ensureDirSync(dir);
+  emptyDirSync(resolve(dir, "mock"));
 
   const openApi = require(resolve(projectDir, "openapi.config.js"));
-  const data = openApi.map(({ mock, ...v }) => {
-    return v;
+
+  openApi.forEach((item) => {
+    item.mock = true;
   });
 
-  writeFileSync(
-    resolve(dir, "openapi.config.js"),
-    `module.exports = ${JSON.stringify(data, null, 2)}`
-  );
-
-  execSync(`cd ${dir} && hto2t openapi.config.js`);
+  await g(resolve(dir, "mock"), openApi);
 
   return dir;
 }

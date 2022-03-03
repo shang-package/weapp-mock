@@ -13,6 +13,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@s4p/o2t": "github:shang-package/openapi2typescript#release",
     "chalk": "^5.0.0",
     "esbuild": "^0.14.23",
     "esbuild-register": "^3.3.2",
