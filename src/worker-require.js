@@ -12,5 +12,5 @@ try {
 
   parentPort.postMessage(v);
 } catch (e) {
-  throw new Error(`config parse failed: ${tsConfig} ||  ${jsConfig}`);
+  throw new Error(`config parse failed: ${configPath}`);
 }
