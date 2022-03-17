@@ -30,14 +30,29 @@ async function getConfig() {
   });
 }
 
+function getPort(baseUrl) {
+  const tmp = baseUrl.replace(/https?:\/\//, "");
+
+  let port;
+  if (tmp.indexOf(":") >= 0) {
+    // 从类似 http://127.0.0.1:8888 中提取 8888
+    port = baseUrl.split(":").pop();
+  } else {
+    // 从类似 http://8888.xxx.com 中提取 8888
+    port = tmp.split(".").shift();
+  }
+
+  if (!port || !/^\d+$/.test(port)) {
+    throw new Error("proxy PORT error " + baseUrl);
+  }
+
+  return port;
+}
+
 (async () => {
   const v = await getConfig();
 
-  const port = v.baseUrl.split(":").pop();
-
-  if (!port || !/^\d+$/.test(port)) {
-    throw new Error("proxy PORT error " + v.baseUrl);
-  }
+  const port = getPort(v.baseUrl);
 
   console.log(chalk.blue(`正在生成 mock 数据中...`));
   const dir = await mockDataGenerate(projectDir);

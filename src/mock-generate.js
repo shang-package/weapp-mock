@@ -13,6 +13,7 @@ async function generate(projectDir) {
 
   openApi.forEach((item) => {
     item.mock = true;
+    item.onlyMock = true;
   });
 
   await g(resolve(dir, "mock"), openApi);
